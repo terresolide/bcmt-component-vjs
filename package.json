@@ -1,7 +1,7 @@
 {
-  "name": "isgi-component-vjs",
+  "name": "bcmt-component-vjs",
   "version": "0.0.1",
-  "description": "Connexion isgi Webservice for Web component",
+  "description": "Webcomponent for connexion to BCMT service",
   "preproduction": {
     "url": "https://rawgit.com/terresolide/"
   },
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/terresolide/isgi-component-vjs.git"
+    "url": "git+https://github.com/terresolide/bcmt-component-vjs.git"
   },
   "keywords": [
     "vue.js"
