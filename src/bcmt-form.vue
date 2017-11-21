@@ -3,31 +3,33 @@
    "en":{
        "time_slot": 	"time slot",
        "output_format": "Output Format",
-       "search": "Search"
+       "search": "Search",
+       "observatories": "observatories"
    },
    "fr":{
         "time_slot": 	"intervalle de temps",
         "output_format": "Format de sortie",
-        "search": "Rechercher"
+        "search": "Rechercher",
+        "observatories": "observatoires"
    }
 }
 </i18n>
 
 <template>	
-	<div class="isgi-container">
+	<div class="bcmt-container">
 	<form id="isgi-form" >
-		<isgi-search-box header-icon-class="fa fa-bars" :title="$t('index')" :value="index" @input="index = $event.target.value">
-			<isgi-select parent="isgi" name="index" options="['aa', 'am', 'Kp', 'Dst', 'PC', 'AE', 'SC', 'SFE', 'Qdays', 'CKdays']"  ></isgi-select>
-		</isgi-search-box>
-		<isgi-search-box header-icon-class="fa fa-calendar" :title="$t('time_slot')" deployed="true">	
-			 <isgi-temporal-search :lang="lang"></isgi-temporal-search>
-		</isgi-search-box>
-		<isgi-search-box header-icon-class="fa fa-file" :title="$t('output_format')" :value="format" @input="format = $event.target.value">
-			<isgi-select parent="isgi" name="format" options="['IAGA2002']"></isgi-select>
-	    </isgi-search-box>
-	    <a id="download" href="#" style="display=none;" download="wsigi_data.zip"></a>
-	    <div class= "isgi-buttons" >
-	    <input class="isgi-search-button" type="button" :value="$t('search')" @click="search"/>
+		<formater-search-box header-icon-class="fa fa-bars" :title="$t('observatories')" >
+			<formater-select  name="index" options="['AAE', 'AMS', 'BNG']" width="260px" ></formater-select>
+		</formater-search-box>
+		<formater-search-box header-icon-class="fa fa-calendar" :title="$t('time_slot')" deployed="true">	
+			 <formater-temporal-search :lang="lang"></formater-temporal-search>
+		</formater-search-box>
+		<formater-search-box header-icon-class="fa fa-file" :title="$t('output_format')" >
+			<formater-select name="format" options="['IAGA2002']" width="260px"></formater-select>
+	    </formater-search-box>
+	    <a id="download" href="#" style="display=none;" download="bcmt_data.zip"></a>
+	    <div class= "bcmt-buttons" >
+	    <input class="bcmt-search-button" type="button" :value="$t('search')" @click="search"/>
 	    </div>
 	</form>
 	</div>
@@ -51,7 +53,7 @@ export default {
       },
       url:{
           type: String,
-          default: 'http://service.test/isgi.php'
+          default: 'http://service.test/bcmt.php'
       }
       
   },
@@ -70,7 +72,7 @@ export default {
 		    if( ! this.user ){
 		        
 		    }
-		    var e = new CustomEvent("isgiSearchEvent", { detail: {user: this.reverse() }});
+		    var e = new CustomEvent("aerisSearchEvent", { detail: {user: this.reverse() }});
 			document.dispatchEvent(e);
 
 		   if(e.detail.error){
@@ -103,10 +105,10 @@ export default {
 		  	
 		 ensureTheme: function() {
 		  	if ((this.$el) && (this.$el.querySelector)) {
-		  		this.$el.querySelector(".isgi-search-button").style.background= this.theme.primary;
+		  		this.$el.querySelector(".bcmt-search-button").style.background= this.theme.primary;
 		  		var color1 = this.$shadeColor( this.theme.primary, 0.1); //lightcolor
 		  		var color2 = this.$shadeColor( this.theme.primary, -.1); //dark color
-		  		this.$el.querySelector(".isgi-search-button").style.borderColor= color1 + ' '+ color2 + ' ' + color2;
+		  		this.$el.querySelector(".bcmt-search-button").style.borderColor= color1 + ' '+ color2 + ' ' + color2;
 		  	}
 		 },
 	  	 reverse: function(){
@@ -136,8 +138,8 @@ export default {
   },
   mounted: function(){
       console.log(this.index);
-    //  var event = new CustomEvent('aerisThemeRequest', {});
-    //	document.dispatchEvent(event);
+     var event = new CustomEvent('aerisThemeRequest', {});
+    	document.dispatchEvent(event);
   },
   destroyed: function(){
       document.removeEventListener('aerisTheme', this.aerisThemeListener);
@@ -148,24 +150,24 @@ export default {
 </script>
 
 <style>
-.isgi-container h1,
-.isgi-container h2,
-.isgi-container h3,
-.isgi-container h4,
-.isgi-container h5,
-.isgi-container h6{
+.bcmt-container h1,
+.bcmt-container h2,
+.bcmt-container h3,
+.bcmt-container h4,
+.bcmt-container h5,
+.bcmt-container h6{
     color: #fff;
 }
-.isgi-container #isgi-form{
+.bcmt-container #isgi-form{
 	width:280px;
 	height:700px;
 }
 
-.isgi-container .isgi-buttons{
+.bcmt-container .isgi-buttons{
     margin-top:10px;
 	text-align:right;
 }
-.isgi-container .isgi-buttons input[type="button"]{
+.bcmt-container .bcmt-buttons input[type="button"]{
 /*	font-family:  "Dejavu serif";*/
 	margin: 0px 0px 3px 7px;
   padding: 3px 12px;
@@ -188,7 +190,7 @@ export default {
   box-sizing: border-box;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
 }
-.isgi-container input[type="button"]::first-letter{
+.bcmt-container input[type="button"]::first-letter{
 	text-transform: uppercase;
 }
 
