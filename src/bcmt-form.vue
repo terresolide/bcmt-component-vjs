@@ -4,13 +4,25 @@
        "time_slot": 	"time slot",
        "output_format": "Output Format",
        "search": "Search",
-       "observatories": "observatories"
+       "observatories": "observatories",
+       "data_interval": "data interval",
+       "second":	"second",
+       "minute": "minute",
+       "hour": "hour",
+       "day": "day",
+       "month": "month"
    },
    "fr":{
         "time_slot": 	"intervalle de temps",
         "output_format": "Format de sortie",
         "search": "Rechercher",
-        "observatories": "observatoires"
+        "observatories": "observatoires",
+         "data_interval": "intervalle de temps",
+         "second":	"seconde",
+       "minute": "minute",
+       "hour": "heure",
+       "day": "jour",
+       "month": "mois"
    }
 }
 </i18n>
@@ -19,10 +31,13 @@
 	<div class="bcmt-container">
 	<form id="isgi-form" >
 		<formater-search-box header-icon-class="fa fa-bars" :title="$t('observatories')" >
-			<formater-select  name="index" options="['AAE', 'AMS', 'BNG']" width="260px" ></formater-select>
+			<formater-select  name="obsCode" options="['AAE', 'AMS', 'BNG']" width="260px" ></formater-select>
 		</formater-search-box>
 		<formater-search-box header-icon-class="fa fa-calendar" :title="$t('time_slot')" deployed="true">	
 			 <formater-temporal-search :lang="lang"></formater-temporal-search>
+		</formater-search-box>
+		<formater-search-box header-icon-class="fa fa-clock-o" :title="$t('data_interval')" deployed="true">	
+			 <formater-select associative="true" name="DataInterval" options="{'sec': 'second', 'min': 'minute', 'hor':'hour', 'day':'day', 'mon':'month'}" width="260px" ></formater-select>
 		</formater-search-box>
 		<formater-search-box header-icon-class="fa fa-file" :title="$t('output_format')" >
 			<formater-select name="format" options="['IAGA2002']" width="260px"></formater-select>
@@ -72,7 +87,7 @@ export default {
 		    if( ! this.user ){
 		        
 		    }
-		    var e = new CustomEvent("aerisSearchEvent", { detail: {user: this.reverse() }});
+		    var e = new CustomEvent("aerisSearchEvent", { detail: {}});
 			document.dispatchEvent(e);
 
 		   if(e.detail.error){
@@ -80,12 +95,19 @@ export default {
 		   }
 
 		   var url = this.url + '?' + this.$buildQuery( e.detail );
+
+		   this.$http.get(url, e.detail).then(response => {
+		        this.handleSuccess(response)
+		      }, response => {
+		        this.handleError(response)
+		      });
 		  
-		   this.$el.querySelector('#download').href = url;
+	            
+		  // this.$el.querySelector('#download').href = url;
 		 
 		  
-		   this.$el.querySelector('#download').click();
-		   e.stopPropagation();
+		  // this.$el.querySelector('#download').click();
+		//   e.stopPropagation();
 		    
 		},
 		
