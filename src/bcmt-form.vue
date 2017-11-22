@@ -17,7 +17,7 @@
         "output_format": "Format de sortie",
         "search": "Rechercher",
         "observatories": "observatoires",
-         "data_interval": "intervalle de temps",
+         "data_interval": "Fréquence des données",
          "second":	"seconde",
        "minute": "minute",
        "hour": "heure",
@@ -29,15 +29,15 @@
 
 <template>	
 	<div class="bcmt-container">
-	<form id="isgi-form" >
-		<formater-search-box header-icon-class="fa fa-bars" :title="$t('observatories')" >
+	<form id="bcmt-form" >
+		<formater-search-box header-icon-class="fa fa-bars" :title="$t('observatories')" deployed="true">
 			<formater-select  name="obsCode" options="['AAE', 'AMS', 'BNG']" width="260px" ></formater-select>
 		</formater-search-box>
-		<formater-search-box header-icon-class="fa fa-calendar" :title="$t('time_slot')" deployed="true">	
+		<formater-search-box header-icon-class="fa fa-calendar" :title="$t('time_slot')" >	
 			 <formater-temporal-search :lang="lang"></formater-temporal-search>
 		</formater-search-box>
 		<formater-search-box header-icon-class="fa fa-clock-o" :title="$t('data_interval')" deployed="true">	
-			 <formater-select associative="true" name="DataInterval" options="{'sec': 'second', 'min': 'minute', 'hor':'hour', 'day':'day', 'mon':'month'}" width="260px" ></formater-select>
+		 	<formater-select type="associative" name="DataInterval" :options="dataInterval" defaut="min" width="260px" ></formater-select> 
 		</formater-search-box>
 		<formater-search-box header-icon-class="fa fa-file" :title="$t('output_format')" >
 			<formater-select name="format" options="['IAGA2002']" width="260px"></formater-select>
@@ -72,17 +72,31 @@ export default {
       }
       
   },
+  computed:{
+      dataInterval(){
+          var interval = JSON.stringify({
+              sec: this.$i18n.t('second'),
+              min: this.$i18n.t('minute'),
+              hor: this.$i18n.t('hour'),
+              day: this.$i18n.t('day'),
+              mon:this.$i18n.t('month')
+          }).replace(/"/g, "'");
+          return interval;
+      }
+  },
   data(){
       return {
-                  index:'aa',
+                  
 	              format:'IAGA2002',
 	              test:'rein' ,
 	              user:null,
+	            
 	              aerisThemeListener:null,
 	              theme:null
       }
   },
   methods: {
+      	
 		search(){
 		    if( ! this.user ){
 		        
@@ -159,7 +173,7 @@ export default {
  
   },
   mounted: function(){
-      console.log(this.index);
+   
      var event = new CustomEvent('aerisThemeRequest', {});
     	document.dispatchEvent(event);
   },
