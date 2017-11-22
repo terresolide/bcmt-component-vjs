@@ -1,0 +1,55 @@
+{
+	"AAE":{
+	    "code": "AAE",
+		"name":{
+		    "en": "Addis Ababa",
+		    "fr": "Addis Abeba"
+		},
+		"country":{
+			"en": "Ethiopia",
+		    "fr": "Ethiopie"
+		},
+		"location":{
+			"lat": 9.035,
+			"lng":37.766
+		},
+		"url": "http://www.bcmt.fr/aae.html"
+	},
+	"AMS":{
+	    "code": "AMS",
+		"name":{
+		    "en": "Amsterdam Island - French Southern and Antarctic Lands",
+		    "fr": "Île Amsterdam - Terres Autrales et Antarctiques françaises"
+		},
+		"country":{
+			"en": "France",
+		    "fr": "France"
+		},
+		"location":{
+			{
+			"lat": -37.8,
+			"lng": 77.570
+			}
+		},
+		"url": "http://www.bcmt.fr/ams.html"
+	},
+	"BOX":{
+	    "code": "BOX",
+		"name":{
+		    "en": "Borok, Yaroslavl",
+		    "fr": "Borok, Yaroslavl"
+		},
+		"country":{
+			"en": "Russia",
+		    "fr": "Russie"
+		},
+		"location":{
+			{
+			"lat": 58.07,
+			"lng": 38.230
+			}
+		},
+		"url": "http://www.bcmt.fr/box.html"
+	},
+	
+}
