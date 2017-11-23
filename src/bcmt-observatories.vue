@@ -42,10 +42,12 @@ export default {
                     response => {this.addObservatories( response)},
                     response => {this.noObservatories( response)});
         },
-        addObservatories(){
+        addObservatories(response){
+            var type = response.headers.get('Content-Type');
+            console.log( type);
             console.log( response);
         },
-        noObservatories(){
+        noObservatories( response){
             this.observatories = null
         }
     },
