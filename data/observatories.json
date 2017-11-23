@@ -26,10 +26,8 @@
 		    "fr": "France"
 		},
 		"location":{
-			{
 			"lat": -37.8,
 			"lng": 77.570
-			}
 		},
 		"url": "http://www.bcmt.fr/ams.html"
 	},
@@ -44,10 +42,8 @@
 		    "fr": "Russie"
 		},
 		"location":{
-			{
 			"lat": 58.07,
 			"lng": 38.230
-			}
 		},
 		"url": "http://www.bcmt.fr/box.html"
 	},

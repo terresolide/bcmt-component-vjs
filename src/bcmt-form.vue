@@ -32,6 +32,7 @@
 	<form id="bcmt-form" >
 		<formater-search-box header-icon-class="fa fa-bars" :title="$t('observatories')" deployed="true">
 			<formater-select  name="obsCode" options="['AAE', 'AMS', 'BNG']" width="260px" ></formater-select>
+			<bcmt-observatories width="260px" :lang="lang"></bcmt-observatories>
 		</formater-search-box>
 		<formater-search-box header-icon-class="fa fa-calendar" :title="$t('time_slot')" >	
 			 <formater-temporal-search :lang="lang"></formater-temporal-search>
@@ -39,7 +40,7 @@
 		<formater-search-box header-icon-class="fa fa-clock-o" :title="$t('data_interval')" deployed="true">	
 		 	<formater-select type="associative" name="DataInterval" :options="dataInterval" defaut="min" width="260px" ></formater-select> 
 		</formater-search-box>
-		<formater-search-box header-icon-class="fa fa-file" :title="$t('output_format')" >
+		<formater-search-box header-icon-class="fa fa-file" :title="$t('output_format')" deployed="true">
 			<formater-select name="format" options="['IAGA2002']" width="260px"></formater-select>
 	    </formater-search-box>
 	    <a id="download" href="#" style="display=none;" download="bcmt_data.zip"></a>

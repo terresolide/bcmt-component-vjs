@@ -19,7 +19,7 @@ Vue.use(IsgiTools);
 
 import BcmtForm from './bcmt-form.vue';
 
-
+import BcmtObservatories from './bcmt-observatories.vue';
 
 
 
@@ -57,9 +57,10 @@ ljs.load('dep', function() {
         }
      }, 100);
      function load(){
-         
+         registerElement('bcmt-observatories', BcmtObservatories);
     
         registerElement('bcmt-form', BcmtForm);
+        
 
     
     }
