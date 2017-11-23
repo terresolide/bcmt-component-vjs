@@ -31,8 +31,7 @@
 	<div class="bcmt-container">
 	<form id="bcmt-form" >
 		<formater-search-box header-icon-class="fa fa-bars" :title="$t('observatories')" deployed="true">
-			<formater-select  name="obsCode" options="['AAE', 'AMS', 'BNG']" width="260px" ></formater-select>
-			<bcmt-observatories width="260px" :lang="lang"></bcmt-observatories>
+			<bcmt-observatories width="260px" :lang="lang" ></bcmt-observatories>
 		</formater-search-box>
 		<formater-search-box header-icon-class="fa fa-calendar" :title="$t('time_slot')" >	
 			 <formater-temporal-search :lang="lang"></formater-temporal-search>

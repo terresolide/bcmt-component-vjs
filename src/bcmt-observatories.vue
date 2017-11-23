@@ -1,17 +1,21 @@
 <i18n>
 {
    "en":{
-       "no_observatories": "No observatory"
+       "no_observatories": "No observatory",
+       "unreadable_observatories": "The observatories file is unreadable",
+       "not_found_observatories": "Observatories file not found"
    },
    "fr":{
-        "no_observatories": "aucun observatoire"
+        "no_observatories": "aucun observatoire",
+        "unreadable_observatories": "Le fichier des observatoires est illisible",
+         "not_found_observatories": "Le fichier des observatoires est introuvable"
    }
 }
 </i18n>
 <template>
 	<span class="bcmt-observatories">
-	<formater-select name="observatories" multiple="true" :width="width" :options="obsString" associative="true" v-if="observatories"></formater-select>
-	<p class="error-message">{{ $t('no_observatories') }}</p>
+	<formater-select name="observatories" multiple="true" :width="width" :options="obsString" :size="computedSize" associative="true" v-if="observatories"></formater-select>
+	<p class="error-message" v-else>{{ $t(errorMsg )}}</p>
 	</span>
 </template>
 <script>
@@ -27,13 +31,20 @@ export default {
         },
         obsurl: {
             type:String,
-            default: "https://rawgit.com/terresolide/bcmt-component-vjs/master/data/observatories.json"
+        	default: "data/observatories.json"
+            //default: "https://rawgit.com/terresolide/bcmt-component-vjs/master/data/observatories.json"
+        },
+        size: {
+            type:String,
+            default:null
         }
     },
     data(){
         return {
             obsString: "['AAE', 'CCD']",
-            observatories:null
+            observatories:null,
+            errorMsg:'no_observatories',
+            computedSize: 'auto'
         }
     },
     methods:{
@@ -43,17 +54,45 @@ export default {
                     response => {this.noObservatories( response)});
         },
         addObservatories(response){
-            var type = response.headers.get('Content-Type');
-            console.log( type);
-            console.log( response);
+            try{
+            	this.observatories = JSON.parse(response.bodyText);
+            	console.log('length='+Object.keys(this.observatories).length);
+            	this.obs2string();
+            	this.computeSize();
+            	//event observatories for map
+            }catch(e){
+                this.observatories = null;
+                this.errorMsg = 'unreadable_observatories'
+            }
+            
         },
         noObservatories( response){
+            switch(response.status){
+            case 404:
+                this.errorMsg = "not_found_observatories";
+                break;
+            default:
+                this.errorMsg = 'unreadable_observatories';
+            }
+           
             this.observatories = null
+        },
+        obs2string(){
+            var options = {};
+        	for(var key in this.observatories){
+        	    options[key ] = "<span>"+key + "</span> " + this.observatories[key].name[this.lang] + " - " + this.observatories[key].country[this.lang];      
+        	}
+        	this.obsString =JSON.stringify( options).replace(/"/g, "'");
+        },
+        computeSize(){
+            if( !this.size ){
+                this.computedSize = Object.keys(this.observatories).length;
+            }
         }
     },
     created: function(){
         this.getObservatories();
-         this.$i18n.locale = this.lang;
+        this.$i18n.locale = this.lang;
     }
    
 }
@@ -69,5 +108,7 @@ export default {
     color: red;
    
 }
-
+.bcmt-observatories span{
+	font-weight:800;
+}
 </style>
