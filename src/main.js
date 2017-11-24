@@ -20,7 +20,16 @@ Vue.use(IsgiTools);
 import BcmtForm from './bcmt-form.vue';
 
 import BcmtObservatories from './bcmt-observatories.vue';
+import BcmtComponent from './bcmt-component.vue';
+import BcmtMap from './bcmt-map.vue';
 
+//import FormaterLayout from '/home/e-pointal/Documents/webcomponent/formater-commons-components-vjs/src/formater-layout.vue';
+
+//@todo find better solution for import component from another repository....
+//import FormaterLayout from '../../formater-commons-components-vjs/src/formater-layout.vue';
+//import FormaterSelect from '../../formater-commons-components-vjs/src/formater-select.vue';
+//import FormaterSearchBox from '../../formater-commons-components-vjs/src/formater-search-box.vue';
+//import FormaterTemporalSearch from '../../formater-commons-components-vjs/src/formater-temporal-search.vue';
 
 
 ljs.addAliases({
@@ -28,7 +37,16 @@ ljs.addAliases({
 	  //  'https://cdnjs.cloudflare.com/ajax/libs/document-register-element/1.4.1/document-register-element.js',
 	  // 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment-with-locales.min.js',
 	  //  'https://cdnjs.cloudflare.com/ajax/libs/moment-range/3.0.3/moment-range.min.js',
-	    'https://rawgit.com/terresolide/formater-commons-components-vjs/master/dist0/formater-commons-components-vjs.js' 
+	  //  'https://cdn.rawgit.com/aeris-data/aeris-commons-components-vjs/0.1.23/dist/aeris-commons-components-vjs_0.1.23.js'
+	  
+	    //'https://rawgit.com/lvoogdt/Leaflet.awesome-markers/master/dist/leaflet.awesome-markers.css',
+	    'https://rawgit.com/epointal/lf-hiker/master/lib/awesome-marker/leaflet.awesome-markers.css',
+	    'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css',
+	    'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js',
+	   // 'https://rawgit.com/lvoogdt/Leaflet.awesome-markers/master/dist/leaflet.awesome-markers.min.js',
+	    'https://rawgit.com/epointal/lf-hiker/master/lib/awesome-marker/leaflet.awesome-markers.min.js',
+	    'https://rawgit.com/terresolide/formater-commons-components-vjs/master/dist0/formater-commons-components-vjs.js' ,
+	    
 	    ]
 })
 ljs.load('dep', function() {
@@ -45,7 +63,8 @@ ljs.load('dep', function() {
             window.registredAerisElements.push(name)
         }
     }
-    var componentUsed = new Array('formater-select' , 'formater-search-box', 'aeris-datepicker');
+    var componentUsed = [];
+    var componentUsed = new Array('formater-select','formater-layout', 'aeris-datepicker');
     var loaded = setInterval(function() {
         var result = componentUsed.filter( function( cpt){
             return window.registredAerisElements.indexOf(cpt)>-1;
@@ -57,10 +76,16 @@ ljs.load('dep', function() {
         }
      }, 100);
      function load(){
+       //  registerElement('formater-select', FormaterSelect);
+        // registerElement('formater-temporal-search', FormaterTemporalSearch);
+       //  registerElement('formater-search-box', FormaterSearchBox);
+       //  registerElement('formater-layout', FormaterLayout);
          registerElement('bcmt-observatories', BcmtObservatories);
     
         registerElement('bcmt-form', BcmtForm);
-        
+        registerElement('bcmt-map', BcmtMap);
+        registerElement('bcmt-component', BcmtComponent);
+      
 
     
     }

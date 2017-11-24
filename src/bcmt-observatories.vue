@@ -14,7 +14,7 @@
 </i18n>
 <template>
 	<span class="bcmt-observatories">
-	<formater-select name="observatories" multiple="true" :width="width" :options="obsString" :size="computedSize" associative="true" v-if="observatories"></formater-select>
+	<formater-select name="observatories" multiple="true" :width="width" :options="obsString" :size="computedSize" type="associative" v-if="observatories" @input="observatoriesChange"></formater-select>
 	<p class="error-message" v-else>{{ $t(errorMsg )}}</p>
 	</span>
 </template>
@@ -44,10 +44,13 @@ export default {
             obsString: "['AAE', 'CCD']",
             observatories:null,
             errorMsg:'no_observatories',
-            computedSize: 'auto'
+            computedSize: 'auto',
+            observatoriesRequestListener:null,
+            selectMarkerObservatoryListener:null
         }
     },
     methods:{
+       
         getObservatories(){
             this.$http.get( this.obsurl).then( 
                     response => {this.addObservatories( response)},
@@ -59,6 +62,7 @@ export default {
             	console.log('length='+Object.keys(this.observatories).length);
             	this.obs2string();
             	this.computeSize();
+            	this.observatoriesRequest();
             	//event observatories for map
             }catch(e){
                 this.observatories = null;
@@ -77,6 +81,28 @@ export default {
            
             this.observatories = null
         },
+        observatoriesChange(ev){
+            console.log(ev.detail);
+            //come from select or marker 
+            if(ev.detail.name){
+                if( ev.detail.selected){
+                    this.values.push(ev.detail.name);
+                }else{
+                    unset(this.values[ ev.detail.name ]);
+                }
+            }
+            console.log(this.values);
+            var event = new CustomEvent('observatoriesChange', {detail:this.values});
+           // event.detail = ev.detail;
+            document.dispatchEvent(event);
+        },
+        observatoriesRequest(){
+            if(this.observatories ){
+                var event = new CustomEvent('allObservatories', {detail:this.observatories});
+                // event.detail = ev.detail;
+                 document.dispatchEvent(event);
+            }
+        },
         obs2string(){
             var options = {};
         	for(var key in this.observatories){
@@ -93,6 +119,16 @@ export default {
     created: function(){
         this.getObservatories();
         this.$i18n.locale = this.lang;
+        this.observatoriesRequestListener = this.observatoriesRequest.bind(this) 
+        document.addEventListener('observatoriesRequest', this.observatoriesRequestListener);
+        this.selectMarkerObservatoryListener = this.observatoriesChange.bind(this) 
+        document.addEventListener('selectMarkerObservatory', this.selectMarkerObservatoryListener);
+    },
+    destroyed(){
+        document.removeEventListener('observatoriesRequest', this.observatoriesRequestListener);
+		this.observatoriesRequestListener = null;
+		document.removeEventListener('selectMarkerObservatory', this.selectMarkerObservatoryListener);
+		this.selectMarkerObservatoryListener = null;
     }
    
 }

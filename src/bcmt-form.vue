@@ -88,7 +88,6 @@ export default {
       return {
                   
 	              format:'IAGA2002',
-	              test:'rein' ,
 	              user:null,
 	            
 	              aerisThemeListener:null,
@@ -104,6 +103,8 @@ export default {
 		    var e = new CustomEvent("aerisSearchEvent", { detail: {}});
 			document.dispatchEvent(e);
 
+		  console.log(e.detail);
+		  return;
 		   if(e.detail.error){
 		       return;
 		   }
