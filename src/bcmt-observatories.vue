@@ -14,7 +14,7 @@
 </i18n>
 <template>
 	<span class="bcmt-observatories">
-	<formater-select name="observatories" multiple="true" :width="width" :options="obsString" :size="computedSize" type="associative" v-if="observatories" @input="observatoriesChange"></formater-select>
+	<formater-select name="observatories" multiple="true" :width="width" :options="obsString" :size="computedSize" type="associative" v-if="observatories"  @input="observatoriesChange"></formater-select>
 	<p class="error-message" v-else>{{ $t(errorMsg )}}</p>
 	</span>
 </template>
@@ -83,16 +83,8 @@ export default {
         },
         observatoriesChange(ev){
             console.log(ev.detail);
-            //come from select or marker 
-            if(ev.detail.name){
-                if( ev.detail.selected){
-                    this.values.push(ev.detail.name);
-                }else{
-                    unset(this.values[ ev.detail.name ]);
-                }
-            }
-            console.log(this.values);
-            var event = new CustomEvent('observatoriesChange', {detail:this.values});
+            console.log( this.values);
+            var event = new CustomEvent('observatoriesChange', {detail:ev.detail});
            // event.detail = ev.detail;
             document.dispatchEvent(event);
         },
@@ -121,14 +113,10 @@ export default {
         this.$i18n.locale = this.lang;
         this.observatoriesRequestListener = this.observatoriesRequest.bind(this) 
         document.addEventListener('observatoriesRequest', this.observatoriesRequestListener);
-        this.selectMarkerObservatoryListener = this.observatoriesChange.bind(this) 
-        document.addEventListener('selectMarkerObservatory', this.selectMarkerObservatoryListener);
     },
     destroyed(){
         document.removeEventListener('observatoriesRequest', this.observatoriesRequestListener);
 		this.observatoriesRequestListener = null;
-		document.removeEventListener('selectMarkerObservatory', this.selectMarkerObservatoryListener);
-		this.selectMarkerObservatoryListener = null;
     }
    
 }

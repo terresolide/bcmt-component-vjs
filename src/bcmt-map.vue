@@ -38,28 +38,31 @@ export default {
           observatoriesMarkers:[],
           iconMarker:null,
           iconSelected: null,
+          bounds:[],
           observatoriesChangeListener:null,
-          allObservatoriesListener:null
+          allObservatoriesListener:null,
+  
       }
   },
   methods: {
       	updateObservatories(ev){
-      	    console.log( ev.detail);
+      	    console.log( ev );
+      	  var iconSelected = this.iconSelected;
+     	   var iconMarker = this.iconMarker;
+      	    for(var key in this.observatoriesMarkers){
+      	    	if( ev.detail[0].indexOf(key)>-1 ){
+      	    		this.observatoriesMarkers[key].setIcon(iconSelected);
+      	    	}else{
+      	    		this.observatoriesMarkers[key].setIcon(iconMarker);
+      	    	}
+      	    }
       	},
       	addClickListener( marker){
+      	   var componentName = "observatories";
       	   var iconSelected = this.iconSelected;
       	   var iconMarker = this.iconMarker;
       	    marker.on('click', function( e ){
-      	      
-      	        // change icon 
-      	        if( this.options.selected){
-      	            this.setIcon(iconMarker);
-      	            this.options.selected = false;
-      	        }else{
-      	            this.setIcon(iconSelected);
-      	          this.options.selected = true;
-      	        }
-      	      var event = new CustomEvent('selectMarkerObservatory', { detail:{ name: this.options.name, selected: this.options.selected}});
+      	      var event = new CustomEvent('selectMarkerEvent', { detail:{ component: componentName, name: this.options.name}});
       	      document.dispatchEvent(event);
       	        
       	    })
@@ -84,9 +87,11 @@ export default {
       	                  selected:false,
       	                  title: ev.detail[key].name[this.lang]});
       	            marker.addTo(this.map); 
+      	            this.bounds.push( ev.detail[key].location );
       	            this.addClickListener(marker);
       	          	this.observatoriesMarkers[key] = marker;
       	        }
+      	        this.map.fitBounds( this.bounds);
       	    }
       	}
 	
