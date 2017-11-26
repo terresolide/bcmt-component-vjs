@@ -23,8 +23,8 @@ For detailed explanation on how things work, consult the [docs for vue-loader](h
 <!-- used with aeris theme to define color -->
 <aeris-theme id="theme2" active="true" primary="#F1684E" emphasis="#39B062"></aeris-theme>
 
-<bcmt-form info="poleterre" url="http://service.xyz.fr" lang="en"></isgi-bcmt>
-<script src="https://rawgit.com/terresolide/bcmt-component-vjs/master/dist0/bcmt-component-vjs_0.0.1.js"></script> 
+<bcmt-component lang="en"></bcmt-component>
+<script src="https://rawgit.com/terresolide/bcmt-component-vjs/master/dist0/bcmt-component-vjs.js"></script> 
 
 ```
 
@@ -42,5 +42,3 @@ For detailed explanation on how things work, consult the [docs for vue-loader](h
  * default : fr
  
  
-#### :url
- > the api service url
