@@ -20,7 +20,63 @@
 
 <script>
 
-
+/*L.selectGroup = L.Class.extends({
+	iconMarker:null,
+	iconSelected:null,
+	allElementsListener:null,
+	elementsChangeListener:null,
+	markers:[],
+	bounds:[],
+	options:{
+		defaultIcon :{ icon: 'circle', prefix: 'fa', markerColor: 'orange'}, 
+	
+	},
+	initialize: function( name, options ){
+		this.name = name;
+		var iconOptions =  this.options.defaultIcon;
+		if( options.iconMarker){
+			iconOptions = Object.assign( iconOptions ,  options.iconMarker);
+		}
+		this.iconMarker = new L.AwesomeMarkers.icon( iconOptions);
+		
+		var iconOptions = { icon: 'circle', prefix: 'fa', markerColor: 'red'};
+		if(options.iconSelected){
+			iconOptions = Object.assign( iconOptions,  options.iconSelected);
+		}
+		this.iconSelected = new L.AwesomeMarkers.icon( iconOptions);
+		
+		 this.elementsChangeListener = this.updateMarkers.bind(this) 
+	      document.addEventListener(this.name + 'ElementsChange', this.elementsChangeListener);
+	      this.allElementsListener = this.addMarkers.bind(this) 
+	      document.addEventListener( this.name + 'AllElements' , this.allElementsListener);
+	      var event = new CustomEvent( this.name + 'Request', {});
+	      document.dispatchEvent(event);
+	},
+	onAdd: function(map){
+		this._map = map;
+	},
+	addMarkers: function(ev){
+		var componentName = this.name;
+		 for(var key in ev.detail){
+	           var marker = new L.Marker(
+	                 ev.detail[key].location,
+	                {icon: this.iconMarker,
+	                 name: key,
+	                 selected:false,
+	                 title: ev.detail[key].name[this.lang]});
+	           
+	           this.bounds.push( ev.detail[key].location );
+	           marker.on('click', function( e ){
+	       	      var event = new CustomEvent('selectMarkerEvent', { detail:{ component: componentName, name: this.options.name}});
+	       	      document.dispatchEvent(event);
+	       	        
+	       	    })
+	       	    this.addLayer( marker );
+	         //	this.observatoriesMarkers[key] = marker;
+	       }
+	       this._map.fitBounds( this.bounds);
+	}
+})*/
 export default {
 
   props:{
@@ -50,7 +106,7 @@ export default {
       	  var iconSelected = this.iconSelected;
      	   var iconMarker = this.iconMarker;
       	    for(var key in this.observatoriesMarkers){
-      	    	if( ev.detail[0].indexOf(key)>-1 ){
+      	    	if( ev.detail && ev.detail[0].indexOf(key)>-1 ){
       	    		this.observatoriesMarkers[key].setIcon(iconSelected);
       	    	}else{
       	    		this.observatoriesMarkers[key].setIcon(iconMarker);
@@ -111,6 +167,7 @@ export default {
 	      attribution: 'Tiles © <a href="https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer">ArcGIS</a>',
 	      maxZoom: 18,
 	      id: 'mapbox.streets'}).addTo( this.map );
+	 //var elements = new L.SelectGroup( "observatories", this.map );
 	  var event = new CustomEvent('observatoriesRequest', {});
       document.dispatchEvent(event);
   },

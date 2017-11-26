@@ -39,7 +39,7 @@ Vue.use( formaterPlugin);
 import BcmtForm from './bcmt-form.vue';
 
 import BcmtObservatories from './bcmt-observatories.vue';
-// import BcmtComponent from './bcmt-component.vue';
+ import BcmtComponent from './bcmt-component.vue';
 import BcmtMap from './bcmt-map.vue';
 
 ljs.addAliases({
@@ -56,7 +56,7 @@ ljs.addAliases({
 	    //awesome marker old version...
 	   // 'https://rawgit.com/lvoogdt/Leaflet.awesome-markers/master/dist/leaflet.awesome-markers.min.js',
 	    'https://rawgit.com/epointal/lf-hiker/master/lib/awesome-marker/leaflet.awesome-markers.min.js',
-	    
+	    'src/leaflet.select-group.js',
 	    //formater commons components from build
 	    //'http://localhost:8080/dist/build.js',
 	   'https://rawgit.com/terresolide/formater-commons-components-vjs/master/dist0/formater-commons-components-vjs.js' ,
@@ -99,13 +99,15 @@ ljs.load('dep', function() {
 //         registerElement('formater-temporal-search', FormaterTemporalSearch);
 //         registerElement('formater-search-box', FormaterSearchBox);
 //         registerElement('formater-layout', FormaterLayout);
-    	
+         
+         
          registerElement('bcmt-observatories', BcmtObservatories);
-    
+      
         registerElement('bcmt-form', BcmtForm);
         registerElement('bcmt-map', BcmtMap);
-       // registerElement('bcmt-component', BcmtComponent);
+        registerElement('bcmt-component', BcmtComponent);
       
+   
     
     }
 	
