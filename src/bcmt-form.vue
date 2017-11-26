@@ -30,7 +30,7 @@
 <template>	
 	<div class="bcmt-container">
 	<form id="bcmt-form" >
-		<formater-search-box header-icon-class="fa fa-bars" :title="$t('observatories')" deployed="true">
+		<formater-search-box header-icon-class="fa fa-binoculars" :title="$t('observatories')" deployed="true">
 			<bcmt-observatories width="260px" :lang="lang" ></bcmt-observatories>
 		</formater-search-box>
 		<formater-search-box header-icon-class="fa fa-calendar" :title="$t('time_slot')" >	

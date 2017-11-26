@@ -83,17 +83,26 @@ export default {
         },
         observatoriesChange(ev){
             console.log(ev.detail);
-            console.log( this.values);
-            var event = new CustomEvent('observatoriesChange', {detail:ev.detail});
+            var event = new CustomEvent('observatoriesElementsChange', {detail:ev.detail});
            // event.detail = ev.detail;
             document.dispatchEvent(event);
         },
         observatoriesRequest(){
             if(this.observatories ){
-                var event = new CustomEvent('allObservatories', {detail:this.observatories});
+                var event = new CustomEvent('observatoriesAllElements', {detail:this.observatories2markers()});
                 // event.detail = ev.detail;
                  document.dispatchEvent(event);
             }
+        },
+        observatories2markers(){
+        	var markers = [];
+        	for(var key in this.observatories){
+        		markers[key] = { 
+	        		location: this.observatories[key].location,
+	        		title : this.observatories[key].name[this.lang]
+        		}
+        	}
+        	return markers;
         },
         obs2string(){
             var options = {};
