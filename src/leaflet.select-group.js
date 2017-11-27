@@ -9,7 +9,7 @@
  * @property {Object} options, for icons
  * @property {L.AwesomeMarkers.icon} iconMarker, the icon for markers
  * @property {L.AwesomeMarkers.icon} iconSelected, the icon for selected markers
- * @emit {Event} SelectMarkerEvent when click on marker with detail={ component: name, name: marker.name}
+ * @emit {Event} SelectMarkerEvent when click on marker with detail={ component: name, value: marker.name}
  */
 L.SelectGroup = L.Class.extend({
 	name:'',
@@ -71,13 +71,12 @@ L.SelectGroup = L.Class.extend({
 	                 ev.detail[key].location,
 	                {icon: this.iconMarker,
 	                 name: key,
-	                 selected:false,
 	                 title: ev.detail[key].title
 	                });
 	           
 	           this.bounds.push( ev.detail[key].location );
 	           marker.on('click', function( e ){
-	       	      var event = new CustomEvent('selectMarkerEvent', { detail:{ component: componentName, name: this.options.name}});
+	       	      var event = new CustomEvent('selectMarkerEvent', { detail:{ component: componentName, value: this.options.name}});
 	       	      document.dispatchEvent(event);
 	       	        
 	       	    })
