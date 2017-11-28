@@ -68,6 +68,6 @@ export default {
 <style>
 [id="bcmtmap"]{
   width:100%;
-  min-height:400px;
+  min-height:500px;
 }
 </style>

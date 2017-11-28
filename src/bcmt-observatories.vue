@@ -59,7 +59,6 @@ export default {
         addObservatories(response){
             try{
             	this.observatories = JSON.parse(response.bodyText);
-            	console.log('length='+Object.keys(this.observatories).length);
             	this.obs2string();
             	this.computeSize();
             	this.observatoriesRequest();

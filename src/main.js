@@ -39,7 +39,7 @@ Vue.use( formaterPlugin);
 import BcmtForm from './bcmt-form.vue';
 
 import BcmtObservatories from './bcmt-observatories.vue';
- import BcmtComponent from './bcmt-component.vue';
+import BcmtComponent from './bcmt-component.vue';
 import BcmtMap from './bcmt-map.vue';
 
 ljs.addAliases({
@@ -58,7 +58,7 @@ ljs.addAliases({
 	    'https://rawgit.com/epointal/lf-hiker/master/lib/awesome-marker/leaflet.awesome-markers.min.js',
 	    'src/leaflet.select-group.js',
 	    //formater commons components from build
-	   // 'http://localhost:8080/dist/build.js',
+	   // 'http://localhost:8082/dist/build.js',
 	    'https://rawgit.com/terresolide/formater-commons-components-vjs/master/dist0/formater-commons-components-vjs.js' ,
 	  //  'https://cdn.rawgit.com/aeris-data/aeris-commons-components-vjs/0.1.23/dist/aeris-commons-components-vjs_0.1.23.js'
 		   

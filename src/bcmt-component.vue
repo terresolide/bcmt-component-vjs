@@ -1,30 +1,49 @@
+<i18n>
+{
+   "en":{
+   },
+   "fr":{
+   }
+}
+</i18n>
 <template>
 <span>
 <div>truc muche</div>
 <formater-layout >
 		<header>
-	<div class="formater-header">
-	</div>
+	<h1>Bureau Central de Magnétisme Terrestre</h1>
+
 	</header>
-	
+  
 	<div class="formater-wrapper">
+	
 		<aside>
-		<div class="formater-sidebar">
-			<bcmt-form></bcmt-form>
+		<div>
+			<bcmt-form :lang="lang"></bcmt-form>
+			</div>
 			
-		</div>
 		</aside>
 		<main>
-		<div class="formater-content">
-			<bcmt-map></bcmt-map>
-		</div>
+			<bcmt-map :lang="lang"></bcmt-map>
+
 		</main>
-	</div>
+  	</div>
 	<footer>
-	<div class="formater-footer">
-	</div>
 	</footer>
 	</formater-layout>
 	
 	</span>
 </template>
+<script>
+export default {
+    props:{
+        lang: {
+            type:String,
+            default:'fr'
+        }
+    },
+    created(){
+        this.$i18n.locale = this.lang;
+    }
+}
+</script>
