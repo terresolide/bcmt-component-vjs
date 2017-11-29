@@ -46,5 +46,37 @@
 			"lng": 38.230
 		},
 		"url": "http://www.bcmt.fr/box.html"
-	}	
+	},
+	"CLF":{
+	    "code": "CLF",
+		"name":{
+		    "en": "Chambon-la-Foret",
+		    "fr": "Chambon-la-Forêt"
+		},
+		"country":{
+			"en": "France",
+		    "fr": "France"
+		},
+		"location":{
+			"lat": 48.025,
+			"lng": 2.260
+		},
+		"url": "http://www.bcmt.fr/clf.html"
+	},
+	"IPM":{
+	    "code": "IPM",
+		"name":{
+		    "en": "Isla de Pascua",
+		    "fr": "Île de Pâques"
+		},
+		"country":{
+		    "en": "Chile",
+		    "fr": "Chili"
+		},
+		"location":{
+			"lat": 27.171,
+			"lng": 109.41
+		},
+		"url": "http://www.bcmt.fr/ipm.html"
+	}		
 }
