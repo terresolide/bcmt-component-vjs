@@ -13,6 +13,10 @@
 			"lat": 9.035,
 			"lng":37.766
 		},
+		"temporal":{
+            "start": "1997-09-01",
+            "end": "now"
+        },
 		"url": "http://www.bcmt.fr/aae.html"
 	},
 	"AMS":{
@@ -29,6 +33,10 @@
 			"lat": -37.8,
 			"lng": 77.570
 		},
+		"temporal":{
+            "start": "1981-04-01",
+            "end": "now"
+        },
 		"url": "http://www.bcmt.fr/ams.html"
 	},
 	"BOX":{
@@ -45,6 +53,10 @@
 			"lat": 58.07,
 			"lng": 38.230
 		},
+		"temporal":{
+            "start": "2004-04-01",
+            "end": "now"
+        },
 		"url": "http://www.bcmt.fr/box.html"
 	},
 	"CLF":{
@@ -61,6 +73,10 @@
 			"lat": 48.025,
 			"lng": 2.260
 		},
+		"temporal":{
+            "start": "1936-01-01",
+            "end": "now"
+        },
 		"url": "http://www.bcmt.fr/clf.html"
 	},
 	"IPM":{
@@ -77,6 +93,90 @@
 			"lat": -27.171,
 			"lng": -109.41
 		},
+		"temporal":{
+            "start": "2010-01-01",
+            "end": "now"
+        },
 		"url": "http://www.bcmt.fr/ipm.html"
-	}		
+	},
+	"KOU":{
+        "code": "KOU",
+        "name":{
+            "en": "Kourou, French Guiana",
+            "fr": "Kourou, Guyane française"
+        },
+        "country":{
+            "en": "France",
+            "fr": "France"
+        },
+        "location":{
+            "lat": 5.021,
+            "lng": -52.731
+        },
+        "temporal":{
+            "start": "1996-01-01",
+            "end": "now"
+        },
+        "url": "http://www.bcmt.fr/kou.html"
+    },
+    "LZH":{
+        "code": "LZH",
+        "name":{
+            "en": "Lanzhou",
+            "fr": "Lanzhou"
+        },
+        "country":{
+            "en": "China",
+            "fr": "Chine"
+        },
+        "location":{
+            "lat": 36.087,
+            "lng": 103.845
+        },
+        "temporal":{
+            "start": "2001-04-01",
+            "end": "now"
+        },
+        "url": "http://www.bcmt.fr/lzh.html"
+    },
+    "MBO":{
+        "code": "MBO",
+        "name":{
+            "en": "M'bour",
+            "fr": "M'bour"
+        },
+        "country":{
+            "en": "Senegal",
+            "fr": "Sénégal"
+        },
+        "location":{
+            "lat": 14.392,
+            "lng": -16.958
+        },
+        "temporal":{
+            "start": "1952-03-01",
+            "end": "now"
+        },
+        "url": "http://www.bcmt.fr/mbo.html"
+    },
+    "PHU":{
+        "code": "PHU",
+        "name":{
+            "en": "Phu Thuy",
+            "fr": "Phu Thuy"
+        },
+        "country":{
+            "en": "Vietnam",
+            "fr": "Viêtnam"
+        },
+        "location":{
+            "lat": 21.029,
+            "lng": 105.959
+        },
+        "temporal":{
+            "start": "1996-01-01",
+            "end": "now"
+        },
+        "url": "http://www.bcmt.fr/phu.html"
+    }                    		
 }
