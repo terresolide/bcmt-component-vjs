@@ -142,8 +142,8 @@
     "MBO":{
         "code": "MBO",
         "name":{
-            "en": "M'bour",
-            "fr": "M'bour"
+            "en": "Mbour",
+            "fr": "Mbour"
         },
         "country":{
             "en": "Senegal",
@@ -219,7 +219,7 @@
         },
         "url": "http://www.bcmt.fr/phu.html"
     },
-      "TAM":{
+    "TAM":{
         "code": "TAM",
         "name":{
             "en": "Tamanrasset",
