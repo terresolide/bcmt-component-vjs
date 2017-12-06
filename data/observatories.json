@@ -178,5 +178,66 @@
             "end": "now"
         },
         "url": "http://www.bcmt.fr/phu.html"
-    }                    		
+    },
+    "DLT":{
+        "code": "DLT",
+        "name":{
+            "en": "Dalat",
+            "fr": "Dalat"
+        },
+        "country":{
+            "en": "Vietnam",
+            "fr": "Viêtnam"
+        },
+        "location":{
+            "lat": 11.945,
+            "lng": 108.482
+        },
+        "temporal":{
+            "start": "2011-04-01",
+            "end": "now"
+        },
+        "url": "http://www.bcmt.fr/dlt.html"
+    },
+    "PPT":{
+        "code": "PPT",
+        "name":{
+            "en": "Pamatai, Tahiti Island",
+            "fr": "Pamatai, Tahiti"
+        },
+        "country":{
+            "en": "French Polynesia, France",
+            "fr": "Polynésie française, France"
+        },
+        "location":{
+            "lat": -17.567,
+            "lng": -149.574
+        },
+        "temporal":{
+            "start": "1968-01-01",
+            "end": "now"
+        },
+        "url": "http://www.bcmt.fr/phu.html"
+    },
+      "TAM":{
+        "code": "TAM",
+        "name":{
+            "en": "Tamanrasset",
+            "fr": "Tamanrasset"
+        },
+        "country":{
+            "en": "Algeria",
+            "fr": "Algerie"
+        },
+        "location":{
+            "lat": 22.792,
+            "lng": 5.530
+        },
+        "temporal":{
+            "start": "1993-01-01",
+            "end": "now"
+        },
+        "url": "http://www.bcmt.fr/tam.html"
+    }  
+                               		
 }
